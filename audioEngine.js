@@ -1,7 +1,6 @@
 var createAudioEngine = function(){
   var audioEngine = {};
   audioEngine.init = function(){
-    console.log(this)
     var ContextClass = (window.AudioContext || 
       window.webkitAudioContext || 
       window.mozAudioContext || 
@@ -10,7 +9,6 @@ var createAudioEngine = function(){
     console.log(ContextClass)
     if (ContextClass) {
       this.context = new ContextClass();
-      console.log(this)
       this.input = this.context.createGain();
       this.input.gain.value = 0.2;
       this.compressor = this.context.createDynamicsCompressor();
