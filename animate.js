@@ -17,10 +17,10 @@ var middle = [
 ]
 
 var high = [
-	{ r:10, note:2, osc: 'single', octave: 3, shape: 'sine', color: 'blue', speed: 5},
-	{ r:10, note:5, osc: 'single', octave: 3, shape: 'sine', color: 'blue', speed: 5},
-	{ r:10, note:9, osc: 'single', octave: 3, shape: 'sine', color: 'blue', speed: 5},
-	{ r:10, note:10, osc: 'single', octave: 3, shape: 'sine', color: 'blue', speed: 5}
+	{ r:10, note:2, osc: 'single', octave: 3, shape: 'sine', color: 'blue', speed: 4},
+	{ r:10, note:5, osc: 'single', octave: 3, shape: 'sine', color: 'blue', speed: 4},
+	{ r:10, note:9, osc: 'single', octave: 3, shape: 'sine', color: 'blue', speed: 4},
+	{ r:10, note:10, osc: 'single', octave: 3, shape: 'sine', color: 'blue', speed: 4}
 ]
 
 var low = [
