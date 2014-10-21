@@ -13,7 +13,7 @@ For now, this is just a really simple graph data-structure. Its got a funny meth
 
 Zone.js
 -------
-This file contains a class called the "Zone" because naming things, yeah. This is basically an object that I attach onto a node in the graph, it has a render method that renders that graph node and its edges onto the canvas. It also gets an oscillator tacked onto it which is accessible via the sing method.
+This file contains a class called the "Zone" because naming things... yeah. This is basically an object that I attach onto every node in the graph and it has a render method that renders that graph node and its edges onto the canvas. It also gets an oscillator tacked onto it which is accessible via the sing method.
 
 
 Oscillators.js
