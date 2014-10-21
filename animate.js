@@ -8,49 +8,79 @@ el.height = HEIGHT;
 
 canvas = document.getElementById('frame').appendChild(el);
 
-var creatures = [
-	{x:25, y:435, r:10, note:0},
-	{x:135, y:355, r:10, note:3},
-	{x:225,y:235, r:10, note:5},
-	{x:325,y:185, r:10, note:7},
-	{x:425, y:35, r:10, note:10},
+var middle = [
+	{ r:15, note:0, osc: 'double', octave: 1, shape: 'square', detune: 0.2, color: 'green', speed: 3},
+	{ r:15, note:3, osc: 'double', octave: 1, shape: 'square', detune: 0.2, color: 'green', speed: 3},
+	{ r:15, note:5, osc: 'double', octave: 1, shape: 'square', detune: 0.2, color: 'green', speed: 3},
+	{ r:15, note:7, osc: 'double', octave: 1, shape: 'square', detune: 0.2, color: 'green', speed: 3},
+	{ r:15, note:10, osc: 'double', octave: 1, shape: 'square', detune: 0.2, color: 'green', speed: 3}
+]
+
+var high = [
+	{ r:10, note:2, osc: 'single', octave: 3, shape: 'sine', color: 'blue', speed: 5},
+	{ r:10, note:5, osc: 'single', octave: 3, shape: 'sine', color: 'blue', speed: 5},
+	{ r:10, note:9, osc: 'single', octave: 3, shape: 'sine', color: 'blue', speed: 5},
+	{ r:10, note:10, osc: 'single', octave: 3, shape: 'sine', color: 'blue', speed: 5}
+]
+
+var low = [
+	{ r:20, note:0, osc: 'double', octave: 0, shape: 'saw', detune: 0.3, color: 'red', speed: 2},
+	{ r:20, note:5, osc: 'double', octave: 0, shape: 'saw', detune: 0.3, color: 'red', speed: 2},
+	{ r:20, note:7, osc: 'double', octave: 0, shape: 'saw', detune: 0.3, color: 'red', speed: 2},
 ]
 
 function init(){
 	scene = {};
-	scene.graph = new Graph();
+	scene.graphLow = new Graph();
+	scene.graphMid = new Graph();
+	scene.graphHi = new Graph();
 	scene.context = canvas.getContext('2d');
-	populateGraph(scene.graph);
+	populateGraph();
 }
 
 function animate(){
-	move();
-	render();
+	scene.context.clearRect(0, 0, WIDTH, HEIGHT)
+	move(scene.graphMid);
+	move(scene.graphHi);
+	move(scene.graphLow);
+	render(scene.graphMid);
+	render(scene.graphHi);
+	render(scene.graphLow);
 	requestAnimationFrame( animate );
 }
 
-function render(){
-	scene.context.clearRect(0, 0, WIDTH, HEIGHT)
-	var nodes = scene.graph.copyNodeArray();
+function render(graph){
+	var nodes = graph.copyNodeArray();
 	nodes.map(function(node){
-		node.data.render(node.id);
+		node.data.render(graph, node.id);
 	})
 }
 
-function populateGraph(graph){
-	for(var i = 0; i < creatures.length; i++){
-		scene.graph.insert(new Zone(scene.context, creatures[i]));
+function populateGraph(){
+	for(var i = 0; i < middle.length; i++){
+		scene.graphMid.insert(new Zone(scene.context, middle[i]));
 	}
-	scene.graph.connect(0, 1);
-	scene.graph.connect(1, 2);
-	scene.graph.connect(1, 3);
-	scene.graph.connect(3, 4);
+	scene.graphMid.connect(0, 1);
+	scene.graphMid.connect(1, 2);
+	scene.graphMid.connect(1, 3);
+	scene.graphMid.connect(3, 4);
+	for(var i = 0; i < high.length; i++){
+		scene.graphHi.insert(new Zone(scene.context, high[i]));
+	}
+	scene.graphHi.connect(0, 1);
+	scene.graphHi.connect(0, 2);
+	scene.graphHi.connect(0, 3);
+	for(var i = 0; i < low.length; i++){
+		scene.graphLow.insert(new Zone(scene.context, low[i]));
+	}
+	scene.graphLow.connect(0, 1);
+	scene.graphLow.connect(1, 2);
 }
 
 // this function is called every animation frame to move the nodes
 
-function move(){
-	var nodes = scene.graph.copyNodeArray();
+function move(graph){
+	var nodes = graph.copyNodeArray();
 	nodes.map(function(node){
 		if(node.data.location.x > WIDTH && node.data.movement.x > 0){
 			node.data.movement.x *= -1;

@@ -32,12 +32,21 @@ Oscillator.prototype.play = function(tone, length) {
   // osc.stop(window.audioEngine.context.currentTime+length+1); 
 };
 
-var DoubleOscillator = function(type, detune){
-	this.osc1 = new Oscillator(0, type, 0.2);
-	this.osc2 = new Oscillator(0, type, 0.2);
+var DoubleOscillator = function(octave, type, detune){
+	this.osc1 = new Oscillator(octave, type, detune);
+	this.osc2 = new Oscillator(octave, type, -detune);
 }
 
 DoubleOscillator.prototype.play = function(note){
 	this.osc1.play(note, 1);
 	this.osc2.play(note, 1);
+}
+
+var oscillatorFactory = function(type, octave, shape, detune) {
+  if(type === 'single'){
+    return new Oscillator(octave, shape, 0)    
+  }
+  else if(type === 'double'){
+    return new DoubleOscillator(octave, shape, detune);
+  }
 }
