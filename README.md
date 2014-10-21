@@ -22,8 +22,8 @@ This file contains JavaScript "classes" for building oscillators and groups of o
 
 audioEngine.js
 --------------
-This contains a function that creates (functionally) an object on the window called the audioEngine. It has a property called input that takes audio sources, calms them down a little, and the connects them to the audio context destination. Pretty sweet.
+This contains a function that (functionally) instantiates an object on the window called the audioEngine. That object has a property called input that takes audio sources, calms them down a little, and the connects them to the audio context destination. Pretty sweet.
 
 cell.js
 -------
-This is a class that makes big clunky x,y coordinates into smaller, easier to use coordinates.
+This is a class that makes big clunky x,y coordinates into smaller, easier to use coordinates. I'm not using it right now so you can borrow it if you want.
