@@ -22,9 +22,22 @@ Oscillator.prototype.play = function(tone, length) {
     else if(this.type === 'square'){
       osc.type = osc.SQUARE;      
     }
-  osc.connect(window.audioEngine.context.destination);
+  var gainNode = window.audioEngine.context.createGainNode();
+  osc.connect(gainNode);
+  gainNode.connect(window.audioEngine.input);
   osc.frequency.value = this.octave+this.detune;
   osc.detune.value = tone * 100;
   osc.start(window.audioEngine.context.currentTime);
-  osc.stop(window.audioEngine.context.currentTime+length); 
+  gainNode.gain.linearRampToValueAtTime(0, window.audioEngine.context.currentTime + 0.5);
+  // osc.stop(window.audioEngine.context.currentTime+length+1); 
 };
+
+var DoubleOscillator = function(type, detune){
+	this.osc1 = new Oscillator(0, type, 0.2);
+	this.osc2 = new Oscillator(0, type, 0.2);
+}
+
+DoubleOscillator.prototype.play = function(note){
+	this.osc1.play(note, 1);
+	this.osc2.play(note, 1);
+}

@@ -3,7 +3,7 @@ function rnd(max){
 }
 
 var Zone = function(context, options){
-  Soul.call(this, options.note);
+  this.note = options.note;
   this.createdAt = new Date();
   this.context = context;
   this.location = {x: options.x, y: options.y};
@@ -11,10 +11,8 @@ var Zone = function(context, options){
   this.radius = options.r;
   this.cell = new Cell(options.x, options.y);
   this.needsUpdate = true;
-  this.oscillator = new Oscillator(2, 'sine', this.note);
+  this.oscillator = new DoubleOscillator('square');
 }
-
-Zone.prototype = Object.create(Soul.prototype);
 
 Zone.prototype.render = function(myId){
   this.context.beginPath();
