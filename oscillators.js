@@ -22,7 +22,7 @@ Oscillator.prototype.play = function(tone, length) {
     else if(this.type === 'square'){
       osc.type = osc.SQUARE;      
     }
-  var gainNode = window.audioEngine.context.createGainNode();
+  var gainNode = window.audioEngine.context.createGain();
   osc.connect(gainNode);
   gainNode.connect(window.audioEngine.input);
   osc.frequency.value = this.octave+this.detune;
