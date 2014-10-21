@@ -1,9 +1,9 @@
-musical-graph
+Musical-Graph
 =============
 
-An experiment in animation and sound
+An experiment in animation and sound, aka a slightly musical version of that screen saver from windows 98 that had bouncing angles. If you don't like sound, click anywhere in the browser and the sound will stop.
 
-Animate.js
+animate.js
 ----------
 This is a big file with esoteric programmer stuff in it like init() animate() and render(). Basically it makes a canvas, creates a graph, and then starts moving the graph around on the canvas. It also forces the graph to sing, but more on that later.
 
@@ -24,6 +24,6 @@ audioEngine.js
 --------------
 This contains a function that (functionally) instantiates an object on the window called the audioEngine. That object has a property called input that takes audio sources, calms them down a little, and the connects them to the audio context destination. Pretty sweet.
 
-cell.js
+Cell.js
 -------
 This is a class that makes big clunky x,y coordinates into smaller, easier to use coordinates. I'm not using it right now so you can borrow it if you want.
