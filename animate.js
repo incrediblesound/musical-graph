@@ -1,10 +1,10 @@
 canvas = document.getElementById('myCanvas');
 var creatures = [
-	{x:25, y:35, r:10, note:2},
-	{x:35, y:75, r:10, note:4},
-	{x:125,y:35, r:10, note:6},
-	{x:225,y:85, r:10, note:8},
-	{x:25, y:135, r:10, note:7},
+	{x:25, y:435, r:10, note:2},
+	{x:135, y:355, r:10, note:4},
+	{x:225,y:235, r:10, note:6},
+	{x:325,y:185, r:10, note:8},
+	{x:425, y:35, r:10, note:7},
 ]
 
 function init(){
@@ -12,30 +12,16 @@ function init(){
 	scene.graph = new Graph();
 	scene.context = canvas.getContext('2d');
 	populateGraph(scene.graph);
-	drawBorder();
 }
 
 function populateGraph(graph){
-	setInterval(function(){
-		if(creatures.length){
-			scene.graph.insert(new Zone(scene.context, creatures.pop()));
-		}
-	}, 1000)
-}
-
-function drawBorder(){
-	var context = scene.context;
-	context.moveTo(1,1);
-	context.lineTo(639,1);
-	context.moveTo(1,1);
-	context.lineTo(1,479);
-	context.moveTo(639,1);
-	context.lineTo(639,479);
-	context.moveTo(480,1);
-	context.lineTo(1,479);
-	
-	context.strokeStyle = "black";
-	context.stroke();
+	for(var i = 0; i < creatures.length; i++){
+		scene.graph.insert(new Zone(scene.context, creatures[i]));
+	}
+	scene.graph.connect(0, 1);
+	scene.graph.connect(1, 2);
+	scene.graph.connect(1, 3);
+	scene.graph.connect(3, 4);
 }
 
 
@@ -48,8 +34,7 @@ function render(){
 	scene.context.clearRect(0, 0, 640, 480)
 	var nodes = scene.graph.copyNodeArray();
 	nodes.map(function(node){
-		node.data.move();
-		node.data.render();
+		node.data.render(node.id);
 	})
 }
 

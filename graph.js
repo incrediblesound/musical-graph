@@ -14,7 +14,7 @@ Graph.prototype.connect = function(source, target){
   var edge = new Edge(source, target);
   this.edges.push(edge);
   var sourceNode = this.getNode(source);
-  var targetNode = this.getnode(target);
+  var targetNode = this.getNode(target);
   sourceNode.edgeTo.push(target);
   targetNode.edgeTo.push(source);
 }
