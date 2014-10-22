@@ -10,14 +10,18 @@ canvas = document.getElementById('frame').appendChild(el);
 
 var middle = [
 	{ r:15, note:0, osc: 'double', octave: 1, shape: 'square', detune: 0.2, color: 'green', speed: 3},
+	{ r:15, note:2, osc: 'double', octave: 1, shape: 'square', detune: 0.2, color: 'green', speed: 3},
 	{ r:15, note:3, osc: 'double', octave: 1, shape: 'square', detune: 0.2, color: 'green', speed: 3},
 	{ r:15, note:5, osc: 'double', octave: 1, shape: 'square', detune: 0.2, color: 'green', speed: 3},
 	{ r:15, note:7, osc: 'double', octave: 1, shape: 'square', detune: 0.2, color: 'green', speed: 3},
+	{ r:15, note:9, osc: 'double', octave: 1, shape: 'square', detune: 0.2, color: 'green', speed: 3},
 	{ r:15, note:10, osc: 'double', octave: 1, shape: 'square', detune: 0.2, color: 'green', speed: 3}
 ]
 
 var high = [
+	{ r:10, note:0, osc: 'single', octave: 3, shape: 'sine', color: 'blue', speed: 4},
 	{ r:10, note:2, osc: 'single', octave: 3, shape: 'sine', color: 'blue', speed: 4},
+	{ r:10, note:3, osc: 'single', octave: 3, shape: 'sine', color: 'blue', speed: 4},
 	{ r:10, note:5, osc: 'single', octave: 3, shape: 'sine', color: 'blue', speed: 4},
 	{ r:10, note:9, osc: 'single', octave: 3, shape: 'sine', color: 'blue', speed: 4},
 	{ r:10, note:10, osc: 'single', octave: 3, shape: 'sine', color: 'blue', speed: 4}
@@ -25,8 +29,10 @@ var high = [
 
 var low = [
 	{ r:20, note:0, osc: 'double', octave: 0, shape: 'saw', detune: 0.3, color: 'red', speed: 2},
+	{ r:20, note:3, osc: 'double', octave: 0, shape: 'saw', detune: 0.3, color: 'red', speed: 2},
 	{ r:20, note:5, osc: 'double', octave: 0, shape: 'saw', detune: 0.3, color: 'red', speed: 2},
 	{ r:20, note:7, osc: 'double', octave: 0, shape: 'saw', detune: 0.3, color: 'red', speed: 2},
+	{ r:20, note:10, osc: 'double', octave: 0, shape: 'saw', detune: 0.3, color: 'red', speed: 2},
 ]
 
 function init(){
@@ -64,17 +70,23 @@ function populateGraph(){
 	scene.graphMid.connect(1, 2);
 	scene.graphMid.connect(1, 3);
 	scene.graphMid.connect(3, 4);
+	scene.graphMid.connect(5, 6);
+	scene.graphMid.connect(0, 6);
 	for(var i = 0; i < high.length; i++){
 		scene.graphHi.insert(new Zone(scene.context, high[i]));
 	}
 	scene.graphHi.connect(0, 1);
 	scene.graphHi.connect(0, 2);
 	scene.graphHi.connect(0, 3);
+	scene.graphHi.connect(2, 4);
+	scene.graphHi.connect(3, 5);
 	for(var i = 0; i < low.length; i++){
 		scene.graphLow.insert(new Zone(scene.context, low[i]));
 	}
 	scene.graphLow.connect(0, 1);
-	scene.graphLow.connect(1, 2);
+	scene.graphLow.connect(0, 2);
+	scene.graphLow.connect(2, 3);
+	scene.graphLow.connect(2, 4);
 }
 
 // this function is called every animation frame to move the nodes
