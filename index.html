@@ -5,17 +5,21 @@
 <body>
 	<div id="frame" style="margin: 10px;">
 	</div>
+	<script src="dataset.js" type="text/javascript"></script>
 	<script src="audioEngine.js" type="text/javascript"></script>
 	<script src="oscillators.js" type="text/javascript"></script>
-	<script src="cell.js" type="text/javascript"></script>
 	<script src="graph.js" type="text/javascript"></script>
 	<script src="zone.js" type="text/javascript"></script>
 	<script src="animate.js" type="text/javascript"></script>
 	<script type="text/javascript">
-	window.audioEngine = createAudioEngine();
-	window.audioEngine.init();
-	init();
-	animate();
+	// create webAudio API interface //
+	window.audioEngine = new AudioEngine();
+	// start the application //
+	animate_init();
+	// click to silence audio //
+	document.addEventListener('click', function(e){
+ 	  window.audioEngine.input.gain.value = 0;
+	})
 	</script>
 </body>
 </html>

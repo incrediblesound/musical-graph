@@ -28,20 +28,7 @@ Graph.prototype.getNode = function(id){
 }
 
 Graph.prototype.copyNodeArray = function(){
-  var nodes = this.nodes.slice();
-  return {
-    pop: function(){
-      return nodes.pop();
-    },
-    map: function(fn){
-      for(var i = 0; i < nodes.length; i++){
-        fn(nodes[i]);
-      }
-    },
-    get: function(){
-      return nodes;
-    }
-  }
+  return this.nodes.slice();
 }
 
 var Node = function(data, id){
@@ -53,8 +40,4 @@ var Node = function(data, id){
 var Edge = function(source, target){
   this.source = source;
   this.target = target;
-}
-
-Edge.prototype.identify = function(){
-  return [this.source, this.target];
 }
