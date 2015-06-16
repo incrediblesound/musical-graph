@@ -17,10 +17,10 @@ var graphData = [
 	{ r:10, note:10, osc: 'single', octave: 3, shape: 'sine', color: 'blue', speed: 4}
 	],
 	[
-	{ r:20, note:0, osc: 'double', octave: 0, shape: 'saw', detune: 0.3, color: 'red', speed: 2},
-	{ r:20, note:3, osc: 'double', octave: 0, shape: 'saw', detune: 0.3, color: 'red', speed: 2},
-	{ r:20, note:5, osc: 'double', octave: 0, shape: 'saw', detune: 0.3, color: 'red', speed: 2},
-	{ r:20, note:7, osc: 'double', octave: 0, shape: 'saw', detune: 0.3, color: 'red', speed: 2},
-	{ r:20, note:10, osc: 'double', octave: 0, shape: 'saw', detune: 0.3, color: 'red', speed: 2},
+	{ r:20, note:0, osc: 'double', octave: 0, shape: 'sawtooth', detune: 0.3, color: 'red', speed: 2},
+	{ r:20, note:3, osc: 'double', octave: 0, shape: 'sawtooth', detune: 0.3, color: 'red', speed: 2},
+	{ r:20, note:5, osc: 'double', octave: 0, shape: 'sawtooth', detune: 0.3, color: 'red', speed: 2},
+	{ r:20, note:7, osc: 'double', octave: 0, shape: 'sawtooth', detune: 0.3, color: 'red', speed: 2},
+	{ r:20, note:10, osc: 'double', octave: 0, shape: 'sawtooth', detune: 0.3, color: 'red', speed: 2},
 	]
 ];

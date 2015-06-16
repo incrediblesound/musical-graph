@@ -17,19 +17,11 @@ Oscillator.prototype.play = function(tone) {
   var _this = this;
   var playTone = function(tone, detune){
     var osc = window.audioEngine.context.createOscillator();
-    if(_this.shape === 'sine'){
-      osc.type = osc.SINE;
-    }
-    else if(_this.shape === 'saw'){
-      osc.type = osc.SAWTOOTH;
-    }
-    else if(_this.shape === 'square'){
-      osc.type = osc.SQUARE;      
-    }
+    osc.type = _this.shape;
     var gainNode = window.audioEngine.context.createGain();
     osc.connect(gainNode);
     gainNode.connect(window.audioEngine.input);
-    osc.frequency.value = _this.octave+detune;
+    osc.frequency.value = !!detune ? _this.octave+detune : _this.octave;
     osc.detune.value = tone * 100;
     osc.start(window.audioEngine.context.currentTime);
     gainNode.gain.linearRampToValueAtTime(0, window.audioEngine.context.currentTime + 0.5);
